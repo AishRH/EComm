@@ -1,3 +1,4 @@
+<!-- this is the page that is rendering everywhere and is dynamically including other html where content needs to be changed -->
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
 	th:fragment="layout(content)">
@@ -34,6 +35,7 @@
 					<li class="nav-item"><a class="nav-link active"
 						aria-current="page" href="/"><i class="fa-solid fa-house"></i>
 							Home</a></li>
+							<!-- the href is for the controllers -->
 					<li class="nav-item"><a class="nav-link active"
 						aria-current="page" href="/products">Product</a></li>
 
@@ -58,7 +60,7 @@
 						aria-current="page" href="/register">REGISTER</a></li>
 
 					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" href="#">ADMIN</a></li>
+						aria-current="page" href="/admin/">ADMIN</a></li>
 
 				</ul>
 
@@ -66,7 +68,7 @@
 		</div>
 	</nav>
 	<!-- End Navbar -->
-
+	
 	<div th:replace="${content}"></div>
 
 	<!-- Start Footer -->

@@ -55,10 +55,9 @@ public class AdminController {
 		m.addAttribute("categorys", categoryService.getAllCategory());
 		return "admin/category";
 	}
-
+	// Post mapping walon m hm koi html page nhi return krte hain, isliye redirect aur isme yahi pe function call krte hain
 	@PostMapping("/saveCategory")
-	public String saveCategory(@ModelAttribute Category category, @RequestParam("file") MultipartFile file,
-			HttpSession session) throws IOException {
+	public String saveCategory(@ModelAttribute Category category, @RequestParam("file") MultipartFile file, HttpSession session) throws IOException {
 
 		String imageName = file != null ? file.getOriginalFilename() : "default.jpg";
 		category.setImageName(imageName);
@@ -67,14 +66,15 @@ public class AdminController {
 
 		if (existCategory) {
 			session.setAttribute("errorMsg", "Category Name already exists");
-		} else {
+		} 
+		else {
 
 			Category saveCategory = categoryService.saveCategory(category);
 
 			if (ObjectUtils.isEmpty(saveCategory)) {
 				session.setAttribute("errorMsg", "Not saved ! internal server error");
 			} else {
-
+				// to save image that you uploaded from your system
 				File saveFile = new ClassPathResource("static/img").getFile();
 
 				Path path = Paths.get(saveFile.getAbsolutePath() + File.separator + "category_img" + File.separator
