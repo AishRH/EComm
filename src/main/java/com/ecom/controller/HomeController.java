@@ -46,7 +46,7 @@ public class HomeController {
 		return "index";
 	}
 
-	@GetMapping("/login")
+	@GetMapping("/signin")
 	public String login() {
 		return "login";
 	}
@@ -57,7 +57,7 @@ public class HomeController {
 	}
 
 	@GetMapping("/products")
-	public String products(Model m, @RequestParam(value = "category", defaultValue = "") String category) {
+	public String products(Model m, @RequestParam(defaultValue = "") String category) {
 		// System.out.println("category="+category);
 		List<Category> categories = categoryService.getAllActiveCategory();
 		List<Product> products = productService.getAllActiveProducts(category);
